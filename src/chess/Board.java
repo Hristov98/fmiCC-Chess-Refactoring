@@ -1,13 +1,13 @@
 package chess;
 
 import java.util.Scanner;
-import pieces.*; //get piece classes
+import pieces.*;
 
 //board is the main class for the game
 public abstract class Board {
 	
-	static final char SIDE_LETTERS[] = {'A','B','C','D','E','F','G','H'};
-	static final int SIDE_NUMS[] = {1,2,3,4,5,6,7,8};//symbols on the side of board
+	static final char[] COLUMNS = {'A','B','C','D','E','F','G','H'};
+	static final int[] ROWS = {1,2,3,4,5,6,7,8};
 	public static Square board[][] = new Square[8][8];
 	
 	private static final Scanner scanner = new Scanner(System.in);
@@ -93,7 +93,7 @@ public abstract class Board {
 	private static void draw(){
 		System.out.print("\n   ");
 		
-		for(char i: SIDE_LETTERS){ //printing letters across the top
+		for(char i: COLUMNS){ //printing letters across the top
 			System.out.print("  " + i + "  ");
 		}
 		System.out.print("\n   ");
@@ -119,7 +119,7 @@ public abstract class Board {
 			System.out.print("\n");
 		}
 		System.out.print("   ");
-		for(char i: SIDE_LETTERS){ //printing letters across the bottom
+		for(char i: COLUMNS){ //printing letters across the bottom
 			System.out.print("  " + i + "  ");
 		}
 		System.out.print("\n\n");
@@ -142,44 +142,44 @@ public abstract class Board {
 		}
 		return name;
 	}
-	
+
 	public static void main(String[] args) {
 		System.out.println("=====> CHESS <====="); //title
-		
+
 		String ply1Name = getName(1, null);
 		String ply2Name = getName(2, ply1Name);
-		
+
 		Player whitePly = new Player(ply1Name, "white");
 		Player blackPly = new Player(ply2Name, "black");
-		
+
 		setup(); //get board set
-		
+
 		//start main loop
 		while(true){
-			
+
 			for(int runNum = 1; runNum <= 2; runNum++){ //run for each player
 				draw(); //show board
-				
+
 				int move[][] = new int[2][2];
-				
+
 				while(true){
-				
+
 					if(runNum == 1){ //first run
-						move = whitePly.getMove();
+						move = whitePly.getPlayerTurn();
 					}
 					else{ //second run
-						move = blackPly.getMove();
+						move = blackPly.getPlayerTurn();
 					}
-				
+
 					if(move[0][0] == -1){ //restarting loop if input is wrong
 						System.out.println("Invalid location. Try again.");
 						continue;
 					}
-					
+
 					int[] moveFrom = move[0];
 					int[] moveTo = move[1];
 					Square fromSquare = board[moveFrom[1]][moveFrom[0]];
-				
+
 					boolean checkValue;
 					if(runNum == 1){
 						checkValue = fromSquare.checkMove(moveFrom, moveTo, "white", false); //checking for pawn move validity
@@ -189,7 +189,7 @@ public abstract class Board {
 					}
 					if(checkValue){
 						update(moveFrom, moveTo);
-						
+
 						if(runNum == 1){
 							if (checkForCheckOrMate("white") == "check"){
 								System.out.println("Check!");

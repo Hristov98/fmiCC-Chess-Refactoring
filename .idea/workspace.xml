@@ -10,6 +10,17 @@
   <component name="CodeStyleSettingsInfer">
     <option name="done" value="true" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
@@ -24,6 +35,8 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -74,6 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585647866286</updated>
       <workItem from="1585647867821" duration="182000" />
+      <workItem from="1585753876556" duration="14975000" />
     </task>
     <servers />
   </component>
@@ -81,21 +95,57 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="113" key="GridCell.Tab.0.bottom" timestamp="1585648052425">
+    <state x="361" y="70" key="#Notifications" timestamp="1585763642529">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="113" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585648052425" />
-    <state width="1493" height="113" key="GridCell.Tab.0.center" timestamp="1585648052425">
+    <state x="361" y="70" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1585763642529" />
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser" timestamp="1585760890841">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="113" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585648052425" />
-    <state width="1493" height="113" key="GridCell.Tab.0.left" timestamp="1585648052425">
+    <state x="574" y="121" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1585760890841" />
+    <state x="611" y="324" key="#com.intellij.refactoring.turnRefsToSuper.TurnRefsToSuperDialog" timestamp="1585754088658">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="113" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585648052425" />
-    <state width="1493" height="113" key="GridCell.Tab.0.right" timestamp="1585648052425">
+    <state x="611" y="324" key="#com.intellij.refactoring.turnRefsToSuper.TurnRefsToSuperDialog/0.0.1536.824@0.0.1536.824" timestamp="1585754088658" />
+    <state x="528" y="283" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1585763230937">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="113" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585648052425" />
+    <state x="528" y="283" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1585763230937" />
+    <state width="1493" height="89" key="GridCell.Tab.0.bottom" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state width="1493" height="89" key="GridCell.Tab.0.center" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state width="1493" height="89" key="GridCell.Tab.0.left" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state width="1493" height="89" key="GridCell.Tab.0.right" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state width="1493" height="89" key="GridCell.Tab.1.bottom" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state width="1493" height="89" key="GridCell.Tab.1.center" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state width="1493" height="89" key="GridCell.Tab.1.left" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state width="1493" height="89" key="GridCell.Tab.1.right" timestamp="1585771101090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="89" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585771101090" />
+    <state x="277" y="54" key="SettingsEditor" timestamp="1585760206775">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585760206775" />
   </component>
 </project>
