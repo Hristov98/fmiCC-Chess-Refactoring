@@ -1,4 +1,4 @@
-package chess;
+package pieces;
 
 public abstract class Square {
 	
@@ -11,7 +11,7 @@ public abstract class Square {
 		type = typeIn;
 	}
 	
-	String getSymbol(){
+	public String getSymbol(){
 		return symbol;
 	}
 	public String getColor(){

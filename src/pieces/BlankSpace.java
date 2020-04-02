@@ -1,6 +1,6 @@
-package chess;
+package pieces;
 
-public class BlankSpace extends Square{
+public class BlankSpace extends Square {
 	
 	public BlankSpace() {
 		super("blank");

@@ -1,7 +1,6 @@
 package pieces;
 
 import chess.Board;
-import chess.Square;
 
 public class Bishop extends Piece{
 
