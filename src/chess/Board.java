@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import pieces.*;
 
-//board is the main class for the game
 public abstract class Board {
 
     static final char[] COLUMNS = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
@@ -67,82 +66,63 @@ public abstract class Board {
         board[SPECIAL_ROW][7] = new Rook("white");
     }
 
-    private static String checkForCheckOrMate(String plyColor) { //check for win or check
-        for (int kingY = 0; kingY < 8; kingY++) {
-            for (int kingX = 0; kingX < 8; kingX++) {
-                Square kingSquare = board[kingY][kingX];
-
-                String kingColor;
-                if (plyColor == "white") {
-                    kingColor = "black";
-                } else { //black
-                    kingColor = "white";
-                }
-
-                if ((kingSquare.getType() == "king") && (kingSquare.getColor() == kingColor)) {
-
-                    for (int threatY = 0; threatY < 8; threatY++) {
-                        for (int threatX = 0; threatX < 8; threatX++) {
-                            Square threatSquare = board[threatY][threatX];
-
-                            if ((threatSquare.getType() != "blank") && (threatSquare.getColor() == plyColor)) {
-                                int[] moveFrom = {threatX, threatY};
-                                int[] moveTo = {kingX, kingY};
-
-                                if (threatSquare.checkMove(moveFrom, moveTo, plyColor, true)) {
-                                    return "check";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
     private static void movePiece(int[] sourceCoordinates, int[] destinationCoordinates) {
         board[destinationCoordinates[1]][destinationCoordinates[0]] = board[sourceCoordinates[1]][sourceCoordinates[0]];
         board[sourceCoordinates[1]][sourceCoordinates[0]] = new BlankSpace();
     }
 
     private static void drawChessBoard() {
-        System.out.print("\n   ");
+        printTab();
+        printLetters();
+        printDottedLines();
+        printNewLine();
+        printRows();
+        printTab();
+        printLetters();
+        printNewLine();
+    }
 
-        for (char i : COLUMNS) { //printing letters across the top
+    private static void printTab() {
+        System.out.print("   ");
+    }
+
+    private static void printLetters() {
+        for (char i : COLUMNS) {
             System.out.print("  " + i + "  ");
         }
-        System.out.print("\n   ");
+    }
 
+    private static void printNewLine() {
+        System.out.print("\n");
+    }
+
+    private static void printDottedLines() {
+        System.out.print("\n   ");
         for (int i = 0; i < 8; i++) {
             System.out.print(" --- ");
         }
-
-        System.out.print("\n");
-        for (int i = 0; i < 8; i++) { //looping through the board and printing symbols
-            System.out.print(" " + (8 - i) + " "); //print number on left side
-
-            for (Square j : board[i]) {
-                System.out.print("|" + j.getSymbol() + "|");
-            }
-            System.out.print(" " + (8 - i) + " "); //number on right side
-
-            System.out.print("\n   ");//to get next line
-
-            for (int j = 0; j < 8; j++) {
-                System.out.print(" --- ");
-            }
-            System.out.print("\n");
-        }
-        System.out.print("   ");
-        for (char i : COLUMNS) { //printing letters across the bottom
-            System.out.print("  " + i + "  ");
-        }
-        System.out.print("\n\n");
     }
 
+    private static void printRows() {
+        for (int i = 0; i < BOARD_BOUNDARY; i++) {
+            printRow(i);
+            printChessPieceOnRow(i);
+            printRow(i);
+            printDottedLines();
+            printNewLine();
+        }
+    }
 
-    //prevName value can be set to null if this is the first call
+    private static void printRow(int row) {
+        System.out.print(" " + (BOARD_BOUNDARY - row) + " ");
+    }
+
+    private static void printChessPieceOnRow(int row) {
+        for (Square j : board[row]) {
+            System.out.print("|" + j.getSymbol() + "|");
+        }
+    }
+
     private static String inputPlayerName(int playerNumber, String previousName) {
         while (true) {
             String name = getPlayerInput(playerNumber);
@@ -150,7 +130,7 @@ public abstract class Board {
             if (isValid(name, previousName)) {
                 return name;
             } else {
-               notifyPlayerOnInvalidName();
+                notifyPlayerOnInvalidName();
             }
 
         }
@@ -173,10 +153,9 @@ public abstract class Board {
         return newName.equals(previousName);
     }
 
-    private static void notifyPlayerOnInvalidName()
-	{
-		System.out.println("Invalid name. Try again.");
-	}
+    private static void notifyPlayerOnInvalidName() {
+        System.out.println("Invalid name. Try again.");
+    }
 
 
     public static void main(String[] args) {
@@ -224,15 +203,6 @@ public abstract class Board {
                     if (checkValue) {
                         movePiece(moveFrom, moveTo);
 
-                        if (runNum == 1) {
-                            if (checkForCheckOrMate("white") == "check") {
-                                System.out.println("Check!");
-                            }
-                        } else {
-                            if (checkForCheckOrMate("black") == "check") {
-                                System.out.println("Check!");
-                            }
-                        }
                         break;
                     }
                     System.out.println("Invalid move. Try again."); //not printed if break is called
