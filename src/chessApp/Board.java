@@ -1,4 +1,4 @@
-package chess;
+package chessApp;
 
 import java.util.Scanner;
 
@@ -26,17 +26,17 @@ public class Board {
         final int SPECIAL_ROW = 0;
 
         for (int i = 0; i < BOARD_BOUNDARY; i++) {
-            board[PAWN_ROW][i] = new Pawn("black");
+            board[PAWN_ROW][i] = new Pawn(Color.BLACK);
         }
 
-        board[SPECIAL_ROW][0] = new Rook("black");
-        board[SPECIAL_ROW][1] = new Knight("black");
-        board[SPECIAL_ROW][2] = new Bishop("black");
-        board[SPECIAL_ROW][3] = new Queen("black");
-        board[SPECIAL_ROW][4] = new King("black");
-        board[SPECIAL_ROW][5] = new Bishop("black");
-        board[SPECIAL_ROW][6] = new Knight("black");
-        board[SPECIAL_ROW][7] = new Rook("black");
+        board[SPECIAL_ROW][0] = new Rook(Color.BLACK);
+        board[SPECIAL_ROW][1] = new Knight(Color.BLACK);
+        board[SPECIAL_ROW][2] = new Bishop(Color.BLACK);
+        board[SPECIAL_ROW][3] = new Queen(Color.BLACK);
+        board[SPECIAL_ROW][4] = new King(Color.BLACK);
+        board[SPECIAL_ROW][5] = new Bishop(Color.BLACK);
+        board[SPECIAL_ROW][6] = new Knight(Color.BLACK);
+        board[SPECIAL_ROW][7] = new Rook(Color.BLACK);
     }
 
     private void initialiseBlankSpace() {
@@ -55,17 +55,17 @@ public class Board {
         final int SPECIAL_ROW = 7;
 
         for (int i = 0; i < BOARD_BOUNDARY; i++) {
-            board[PAWN_ROW][i] = new Pawn("white");
+            board[PAWN_ROW][i] = new Pawn(Color.WHITE);
         }
 
-        board[SPECIAL_ROW][0] = new Rook("white");
-        board[SPECIAL_ROW][1] = new Knight("white");
-        board[SPECIAL_ROW][2] = new Bishop("white");
-        board[SPECIAL_ROW][3] = new Queen("white");
-        board[SPECIAL_ROW][4] = new King("white");
-        board[SPECIAL_ROW][5] = new Bishop("white");
-        board[SPECIAL_ROW][6] = new Knight("white");
-        board[SPECIAL_ROW][7] = new Rook("white");
+        board[SPECIAL_ROW][0] = new Rook(Color.WHITE);
+        board[SPECIAL_ROW][1] = new Knight(Color.WHITE);
+        board[SPECIAL_ROW][2] = new Bishop(Color.WHITE);
+        board[SPECIAL_ROW][3] = new Queen(Color.WHITE);
+        board[SPECIAL_ROW][4] = new King(Color.WHITE);
+        board[SPECIAL_ROW][5] = new Bishop(Color.WHITE);
+        board[SPECIAL_ROW][6] = new Knight(Color.WHITE);
+        board[SPECIAL_ROW][7] = new Rook(Color.WHITE);
     }
 
     public void movePiece(int[] sourceCoordinates, int[] destinationCoordinates) {

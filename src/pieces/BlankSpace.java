@@ -1,9 +1,11 @@
 package pieces;
 
+import chessApp.Color;
+
 public class BlankSpace extends Square {
 	
 	public BlankSpace() {
-		super("blank");
+		super(PieceType.BLANK);
 		symbol = "   ";
 		color = null; //a blank square has no color
 		
@@ -12,7 +14,7 @@ public class BlankSpace extends Square {
 	public void move(int[] moveToLoc) {
 	}
 
-	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) { //unused
+	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) { //unused
 		return false;
 	}
 

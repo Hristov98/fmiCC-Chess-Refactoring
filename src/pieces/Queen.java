@@ -1,13 +1,14 @@
 package pieces;
 
-import chess.Board;
+import chessApp.Board;
+import chessApp.Color;
 
 public class Queen extends Piece{
 
-	public Queen(String colorIn) {
-		super(colorIn, "queen");
+	public Queen(Color colorIn) {
+		super(colorIn, PieceType.QUEEN);
 		
-		if(color == "white"){
+		if(color == Color.WHITE){
 			symbol = "wQu";
 		}
 		else{
@@ -16,20 +17,20 @@ public class Queen extends Piece{
 	}
 
 	@Override
-	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) {
+	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = moveFromReq[0];
-		int moveFromY = moveFromReq[1];
-		int moveToX = moveToReq[0];
-		int moveToY = moveToReq[1];
+		int moveFromX = sourceCoordinates[0];
+		int moveFromY = sourceCoordinates[1];
+		int moveToX = destinationCoordinates[0];
+		int moveToY = destinationCoordinates[1];
 		
 		Square toSquare = Board.board[moveToY][moveToX];
 		
 		String direction;
 		String type; //diagonal or straight
 		
-		if(!testKing){
-			if(toSquare.getType() == "king"){
+		if(!isKing){
+			if(toSquare.getType() == PieceType.KING){
 				return false; //can't move to take a king
 			}
 		}
@@ -99,10 +100,10 @@ public class Queen extends Piece{
 					testSquare = Board.board[moveFromY + diagMoveAway][moveFromX - diagMoveAway];
 				}
 			
-				if((testSquare.getType() != "blank") && (diagMoveAway != moveDistance)){
+				if((testSquare.getType() != PieceType.BLANK) && (diagMoveAway != moveDistance)){
 					return false;
 				}
-				else if((diagMoveAway == moveDistance) && ((testSquare.getColor() != plyColor) || (testSquare.getType() == "blank"))){
+				else if((diagMoveAway == moveDistance) && ((testSquare.getColor() != playerColor) || (testSquare.getType() == PieceType.BLANK))){
 					return true;
 				}
 			}
@@ -115,20 +116,20 @@ public class Queen extends Piece{
 					if(direction == "rite"){
 						testSquare = Board.board[moveFromY][moveFromX + displace];
 					
-						if((testSquare.getType() != "blank") && (displace != displaceMax)){
+						if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 						return false;
 						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+						else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 							return true;
 						}
 					}
 					else{
 						testSquare = Board.board[moveFromY][moveFromX - displace];
 					
-						if((testSquare.getType() != "blank") && (displace != displaceMax)){
+						if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 							return false;
 						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+						else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 							return true;
 						}
 					}
@@ -142,20 +143,20 @@ public class Queen extends Piece{
 					if(direction == "top"){
 						testSquare = Board.board[moveFromY - displace][moveFromX];
 					
-						if((testSquare.getType() != "blank") && (displace != displaceMax)){
+						if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 							return false;
 						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+						else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 							return true;
 						}
 					}
 					else{
 						testSquare = Board.board[moveFromY + displace][moveFromX];
 					
-						if((testSquare.getType() != "blank") && (displace != displaceMax)){
+						if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 							return false;
 						}
-						else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+						else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 							return true;
 						}
 					}

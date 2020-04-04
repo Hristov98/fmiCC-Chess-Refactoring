@@ -1,13 +1,13 @@
-package chess;
+package chessApp;
 
 import java.util.Scanner;
 
 class Player {
     private String name;
-    private String color;
+    private Color color;
     private final Scanner scanner;
 
-    Player(String name, String color) {
+    Player(String name, Color color) {
         scanner = new Scanner(System.in);
         this.name = name;
         this.color = color;

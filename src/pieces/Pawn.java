@@ -1,13 +1,14 @@
 package pieces;
 
-import chess.Board;
+import chessApp.Board;
+import chessApp.Color;
 
 public class Pawn extends Piece{
 
-	public Pawn(String colorIn) {
-		super(colorIn, "pawn");
+	public Pawn(Color colorIn) {
+		super(colorIn, PieceType.PAWN);
 		
-		if(color == "white"){
+		if(color == Color.WHITE){
 			symbol = "wPa";
 		}
 		else{
@@ -15,12 +16,12 @@ public class Pawn extends Piece{
 		}
 	}
 	
-	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) {
+	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = moveFromReq[0];
-		int moveFromY = moveFromReq[1];
-		int moveToX = moveToReq[0];
-		int moveToY = moveToReq[1];
+		int moveFromX = sourceCoordinates[0];
+		int moveFromY = sourceCoordinates[1];
+		int moveToX = destinationCoordinates[0];
+		int moveToY = destinationCoordinates[1];
 		
 		int moveForwardTwo; //vars that increment the moves | change based on direction
 		int moveForwardOne;
@@ -28,13 +29,13 @@ public class Pawn extends Piece{
 		
 		Square toSquare = Board.board[moveToY][moveToX];
 		
-		if(!testKing){
-			if(toSquare.getType() == "king"){
+		if(!isKing){
+			if(toSquare.getType() == PieceType.KING){
 				return false; //can't move to take a king
 			}
 		}
 		
-		if(plyColor == "white"){ //for white pieces direction changes
+		if(playerColor == Color.WHITE){ //for white pieces direction changes
 			moveForwardTwo = -2;
 			moveForwardOne = -1;
 			pawnRowOnPlySide = 6;
@@ -49,17 +50,17 @@ public class Pawn extends Piece{
 			
 			//move to take a piece that is of a different color to the diagonally
 			if((moveToX == moveFromX - 1) || (moveToX == moveFromX + 1)){
-				if((toSquare.getType() != "blank") && (toSquare.getColor() != plyColor)){
+				if((toSquare.getType() != PieceType.BLANK) && (toSquare.getColor() != playerColor)){
 					return true; 
 				}
 			}	
 			//straight move forward 1 and move is to blank space
-			else if((moveToX == moveFromX) && (toSquare.getType() == "blank")){ 
+			else if((moveToX == moveFromX) && (toSquare.getType() == PieceType.BLANK)){
 				return true;
 			}
 		}
 		//move forward 2 straight and is to blank space
-		else if((moveToY == moveFromY + moveForwardTwo) && (moveToX == moveFromX) && (toSquare.getType() == "blank")){ 
+		else if((moveToY == moveFromY + moveForwardTwo) && (moveToX == moveFromX) && (toSquare.getType() == PieceType.BLANK)){
 			if(moveFromY == pawnRowOnPlySide){ //if pawn moves from the starting row
 				return true;
 			}

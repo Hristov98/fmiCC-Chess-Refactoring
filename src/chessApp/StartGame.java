@@ -1,4 +1,4 @@
-package chess;
+package chessApp;
 
 import pieces.Square;
 
@@ -33,8 +33,8 @@ public class StartGame {
     }
 
     private static void assignPlayers() {
-        whitePlayer = new Player(whitePlayerName, "white");
-        blackPlayer = new Player(blackPlayerName, "black");
+        whitePlayer = new Player(whitePlayerName, Color.WHITE);
+        blackPlayer = new Player(blackPlayerName, Color.BLACK);
     }
 
     private static void startGameLoop() {
@@ -57,7 +57,13 @@ public class StartGame {
                 chessBoard.movePiece(whitePlayerMove[0], whitePlayerMove[1]);
                 break;
             }
+            else printWrongMoveMessage();
         }
+    }
+
+    private static void printWrongMoveMessage()
+    {
+        System.out.println("Invalid location. Try again.");
     }
 
     private static void getValidWhitePlayerTurn() {
@@ -71,12 +77,12 @@ public class StartGame {
         int[] destinationCoordinates = whitePlayerMove[1];
         Square sourcePosition = chessBoard.getBoard()[sourceCoordinates[1]][sourceCoordinates[0]];
 
-        return sourcePosition.checkMove(sourceCoordinates, destinationCoordinates, "white", false);
+        return sourcePosition.checkMove(sourceCoordinates, destinationCoordinates, Color.WHITE, false);
     }
 
     private static boolean isNotValid(int[][] playerInput) {
         if (playerInput[0][0] == -1) {
-            System.out.println("Invalid location. Try again.");
+            printWrongMoveMessage();
             return true;
         } else return false;
     }
@@ -90,6 +96,7 @@ public class StartGame {
                 chessBoard.movePiece(blackPlayerMove[0], blackPlayerMove[1]);
                 break;
             }
+            else printWrongMoveMessage();
         }
     }
 
@@ -104,6 +111,6 @@ public class StartGame {
         int[] destinationCoordinates = blackPlayerMove[1];
         Square sourcePosition = chessBoard.getBoard()[sourceCoordinates[1]][sourceCoordinates[0]];
 
-        return sourcePosition.checkMove(sourceCoordinates, destinationCoordinates, "black", false);
+        return sourcePosition.checkMove(sourceCoordinates, destinationCoordinates, Color.BLACK, false);
     }
 }

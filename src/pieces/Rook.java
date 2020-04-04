@@ -1,13 +1,14 @@
 package pieces;
 
-import chess.Board;
+import chessApp.Board;
+import chessApp.Color;
 
 public class Rook extends Piece{
 
-	public Rook(String colorIn) {
-		super(colorIn, "rook");
+	public Rook(Color colorIn) {
+		super(colorIn, PieceType.ROOK);
 		
-		if(color == "white"){
+		if(color == Color.WHITE){
 			symbol = "wRo";
 		}
 		else{
@@ -15,19 +16,19 @@ public class Rook extends Piece{
 		}
 	}
 
-	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) {
+	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = moveFromReq[0];
-		int moveFromY = moveFromReq[1];
-		int moveToX = moveToReq[0];
-		int moveToY = moveToReq[1];
+		int moveFromX = sourceCoordinates[0];
+		int moveFromY = sourceCoordinates[1];
+		int moveToX = destinationCoordinates[0];
+		int moveToY = destinationCoordinates[1];
 		
 		Square toSquare = Board.board[moveToY][moveToX];
 		
 		String direction;
 		
-		if(!testKing){
-			if(toSquare.getType() == "king"){
+		if(!isKing){
+			if(toSquare.getType() == PieceType.KING){
 				return false; //can't move to take a king
 			}
 		}
@@ -62,20 +63,20 @@ public class Rook extends Piece{
 				if(direction == "rite"){
 					testSquare = Board.board[moveFromY][moveFromX + displace];
 					
-					if((testSquare.getType() != "blank") && (displace != displaceMax)){
+					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 						return false;
 					}
-					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 						return true;
 					}
 				}
 				else{
 					testSquare = Board.board[moveFromY][moveFromX - displace];
 					
-					if((testSquare.getType() != "blank") && (displace != displaceMax)){
+					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 						return false;
 					}
-					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 						return true;
 					}
 				}
@@ -89,20 +90,20 @@ public class Rook extends Piece{
 				if(direction == "top"){
 					testSquare = Board.board[moveFromY - displace][moveFromX];
 					
-					if((testSquare.getType() != "blank") && (displace != displaceMax)){
+					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 						return false;
 					}
-					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 						return true;
 					}
 				}
 				else{
 					testSquare = Board.board[moveFromY + displace][moveFromX];
 					
-					if((testSquare.getType() != "blank") && (displace != displaceMax)){
+					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
 						return false;
 					}
-					else if((displace == displaceMax) && ((testSquare.getType() == "blank") || (testSquare.getColor() != plyColor))){
+					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 						return true;
 					}
 				}

@@ -1,13 +1,14 @@
 package pieces;
 
-import chess.Board;
+import chessApp.Board;
+import chessApp.Color;
 
 public class Bishop extends Piece{
 
-	public Bishop(String colorIn) {
-		super(colorIn, "bishop");
+	public Bishop(Color colorIn) {
+		super(colorIn, PieceType.BISHOP);
 		
-		if(color == "white"){
+		if(color == Color.WHITE){
 			symbol = "wBi";
 		}
 		else{
@@ -15,19 +16,19 @@ public class Bishop extends Piece{
 		}
 	}
 
-	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) {
+	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = moveFromReq[0];
-		int moveFromY = moveFromReq[1];
-		int moveToX = moveToReq[0];
-		int moveToY = moveToReq[1];
+		int moveFromX = sourceCoordinates[0];
+		int moveFromY = sourceCoordinates[1];
+		int moveToX = destinationCoordinates[0];
+		int moveToY = destinationCoordinates[1];
 		
 		Square toSquare = Board.board[moveToY][moveToX];
 		
 		int moveDistance = Math.abs(moveToX - moveFromX);
 		
-		if(!testKing){
-			if(toSquare.getType() == "king"){
+		if(!isKing){
+			if(toSquare.getType() == PieceType.KING){
 				return false; //can't move to take a king
 			}
 		}
@@ -70,10 +71,10 @@ public class Bishop extends Piece{
 				testSquare = Board.board[moveFromY + diagMoveAway][moveFromX - diagMoveAway];
 			}
 			
-			if((testSquare.getType() != "blank") && (diagMoveAway != moveDistance)){
+			if((testSquare.getType() != PieceType.BLANK) && (diagMoveAway != moveDistance)){
 				return false;
 			}
-			else if((diagMoveAway == moveDistance) && ((testSquare.getColor() != plyColor) || (testSquare.getType() == "blank"))){
+			else if((diagMoveAway == moveDistance) && ((testSquare.getColor() != playerColor) || (testSquare.getType() == PieceType.BLANK))){
 				return true;
 			}
 		}

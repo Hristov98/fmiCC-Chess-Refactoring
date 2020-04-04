@@ -1,25 +1,25 @@
 package pieces;
 
+import chessApp.Color;
+
 public abstract class Square {
-	
-	//-1 indicates that piece is off the board
 	protected String symbol;
-	public String color; //black white or null for blanks
-	public String type;
+	protected Color color;
+	protected PieceType type;
 	
-	public Square(String typeIn){
-		type = typeIn;
+	public Square(PieceType type){
+		this.type = type;
 	}
 	
 	public String getSymbol(){
 		return symbol;
 	}
-	public String getColor(){
+	public Color getColor(){
 		return color;
 	}
-	public String getType(){
+	public PieceType getType(){
 		return type;
 	}
 	
-	public abstract boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing);
+	public abstract boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing);
 }

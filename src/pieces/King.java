@@ -1,13 +1,14 @@
 package pieces;
 
-import chess.Board;
+import chessApp.Board;
+import chessApp.Color;
 
 public class King extends Piece{
 
-	public King(String colorIn) {
-		super(colorIn, "king");
+	public King(Color colorIn) {
+		super(colorIn, PieceType.KING);
 		
-		if(this.color == "white"){
+		if(this.color == Color.WHITE){
 			symbol = "wKi";
 		}
 		else{
@@ -15,22 +16,22 @@ public class King extends Piece{
 		}
 	}
 
-	public boolean checkMove(int[] moveFromReq, int[] moveToReq, String plyColor, boolean testKing) {
+	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = moveFromReq[0];
-		int moveFromY = moveFromReq[1];
-		int moveToX = moveToReq[0];
-		int moveToY = moveToReq[1];
+		int moveFromX = sourceCoordinates[0];
+		int moveFromY = sourceCoordinates[1];
+		int moveToX = destinationCoordinates[0];
+		int moveToY = destinationCoordinates[1];
 		
 		Square toSquare = Board.board[moveToY][moveToX];
 		
 		for (int moveAwayX = -1; moveAwayX <= 1; moveAwayX++){
 			for (int moveAwayY = -1; moveAwayY <= 1; moveAwayY++){
 				if(moveToX == moveFromX + moveAwayX && moveToY == moveFromY + moveAwayY){
-					if((toSquare.getType() != "blank") && (toSquare.getColor() != plyColor)){
+					if((toSquare.getType() != PieceType.BLANK) && (toSquare.getColor() != playerColor)){
 						return true;
 					}
-					else if(toSquare.getType() == "blank"){
+					else if(toSquare.getType() == PieceType.BLANK){
 						return true;
 					}
 				}
