@@ -5,8 +5,8 @@ import chessApp.Color;
 
 public class King extends Piece{
 
-	public King(Color colorIn) {
-		super(colorIn, PieceType.KING);
+	public King(Color color) {
+		super(color, PieceType.KING);
 		
 		if(this.color == Color.WHITE){
 			symbol = "wKi";
@@ -18,20 +18,20 @@ public class King extends Piece{
 
 	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = sourceCoordinates[0];
-		int moveFromY = sourceCoordinates[1];
-		int moveToX = destinationCoordinates[0];
-		int moveToY = destinationCoordinates[1];
+		int sourceColumn = sourceCoordinates[0];
+		int sourceRow = sourceCoordinates[1];
+		int destinationColumn = destinationCoordinates[0];
+		int destinationRow = destinationCoordinates[1];
 		
-		Square toSquare = Board.board[moveToY][moveToX];
+		Square destinationSquare = Board.board[destinationRow][destinationColumn];
 		
-		for (int moveAwayX = -1; moveAwayX <= 1; moveAwayX++){
-			for (int moveAwayY = -1; moveAwayY <= 1; moveAwayY++){
-				if(moveToX == moveFromX + moveAwayX && moveToY == moveFromY + moveAwayY){
-					if((toSquare.getType() != PieceType.BLANK) && (toSquare.getColor() != playerColor)){
+		for (int moveAwayColumn = -1; moveAwayColumn <= 1; moveAwayColumn++){
+			for (int moveAwayRow = -1; moveAwayRow <= 1; moveAwayRow++){
+				if(destinationColumn == sourceColumn + moveAwayColumn && destinationRow == sourceRow + moveAwayRow){
+					if((destinationSquare.getType() != PieceType.BLANK) && (destinationSquare.getColor() != playerColor)){
 						return true;
 					}
-					else if(toSquare.getType() == PieceType.BLANK){
+					else if(destinationSquare.getType() == PieceType.BLANK){
 						return true;
 					}
 				}

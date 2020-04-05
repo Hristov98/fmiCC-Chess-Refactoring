@@ -18,48 +18,46 @@ public class Knight extends Piece{
 
 	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = sourceCoordinates[0];
-		int moveFromY = sourceCoordinates[1];
-		int moveToX = destinationCoordinates[0];
-		int moveToY = destinationCoordinates[1];
+		int sourceColumn = sourceCoordinates[0];
+		int sourceRow = sourceCoordinates[1];
+		int destinationColumn = destinationCoordinates[0];
+		int destinationRow = destinationCoordinates[1];
 		
-		Square toSquare = Board.board[moveToY][moveToX];
+		Square destinationSquare = Board.board[destinationRow][destinationColumn];
 		
 		if(!isKing){
-			if(toSquare.getType() == PieceType.KING){
-				return false; //can't move to take a king
+			if(destinationSquare.getType() == PieceType.KING){
+				return false;
 			}
 		}
 		
-		boolean locationPass = false; //default false
+		boolean locationPass = false;
 		
-		for(int displaceX = -2; displaceX <= 2; displaceX++){
+		for(int columnDisplacement = -2; columnDisplacement <= 2; columnDisplacement++){
 		
-			if(displaceX != 0){
-				if(moveToX == moveFromX + displaceX){
-					
-					if(Math.abs(displaceX) == 1){ //if the x displace was 1 the y displace must be 2
-						for(int displaceY = -2; displaceY <= 2; displaceY += 4){
-							if(moveToY == moveFromY + displaceY){
+			if(columnDisplacement != 0){
+				if(destinationColumn == sourceColumn + columnDisplacement){
+					if(Math.abs(columnDisplacement) == 1){
+						for(int rowDisplacement = -2; rowDisplacement <= 2; rowDisplacement += 4){
+							if (destinationRow == sourceRow + rowDisplacement) {
 								locationPass = true;
+								break;
 							}
 						}
 					}
-					else{ //x displace is 2 so y displace is 1
+					else{
 						for(int displaceY = -1; displaceY <= 1; displaceY += 2){
-							if(moveToY == moveFromY + displaceY){
+							if (destinationRow == sourceRow + displaceY) {
 								locationPass = true;
+								break;
 							}
 						}
 					}
 				}
 			}
 		}
-		if(locationPass){ //if the location was not within a knights move rules
-			
-			if((toSquare.getType() == PieceType.BLANK) || (toSquare.getColor() != playerColor)){
-				return true;
-			}
+		if(locationPass){
+			return (destinationSquare.getType() == PieceType.BLANK) || (destinationSquare.getColor() != playerColor);
 		}
 		
 		return false;

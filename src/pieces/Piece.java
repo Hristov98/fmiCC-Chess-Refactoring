@@ -4,8 +4,8 @@ import chessApp.Color;
 
 public abstract class Piece extends Square{
 	
-	public Piece(Color colorIn, PieceType type) {
+	public Piece(Color color, PieceType type) {
 		super(type);
-		color = colorIn;
+		this.color = color;
 	} 
 }

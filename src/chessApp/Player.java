@@ -17,10 +17,10 @@ class Player {
         int[][] playerTurn = new int[2][2];
 
         String sourceCoordinates = getSourceCoordinatesFromPlayer();
-        playerTurn[0] = validateAndAssignCoordinates(sourceCoordinates);
+        playerTurn[0] = assignCoordinatesIfValid(sourceCoordinates);
 
         String destinationCoordinates = getDestinationCoordinatesFromPlayer();
-        playerTurn[1] = validateAndAssignCoordinates(destinationCoordinates);
+        playerTurn[1] = assignCoordinatesIfValid(destinationCoordinates);
 
         return playerTurn;
     }
@@ -37,7 +37,7 @@ class Player {
         return scanner.nextLine().trim();
     }
 
-    private int[] validateAndAssignCoordinates(String position) {
+    private int[] assignCoordinatesIfValid(String position) {
         if (coordinatesAreValid(position)) {
             return assignCoordinates(position);
         } else {

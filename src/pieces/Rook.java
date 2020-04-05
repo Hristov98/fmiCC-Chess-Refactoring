@@ -18,32 +18,32 @@ public class Rook extends Piece{
 
 	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = sourceCoordinates[0];
-		int moveFromY = sourceCoordinates[1];
-		int moveToX = destinationCoordinates[0];
-		int moveToY = destinationCoordinates[1];
+		int sourceColumn = sourceCoordinates[0];
+		int sourceRow = sourceCoordinates[1];
+		int destinationColumn = destinationCoordinates[0];
+		int destinationRow = destinationCoordinates[1];
 		
-		Square toSquare = Board.board[moveToY][moveToX];
+		Square toSquare = Board.board[destinationRow][destinationColumn];
 		
 		String direction;
 		
 		if(!isKing){
 			if(toSquare.getType() == PieceType.KING){
-				return false; //can't move to take a king
+				return false;
 			}
 		}
 		
-		if(moveToY == moveFromY){
-			if(moveToX > moveFromX){
-				direction = "rite";
+		if(destinationRow == sourceRow){
+			if(destinationColumn > sourceColumn){
+				direction = "right";
 			}
 			else{
 				direction = "left";
 			}
 		}
 		
-		else if(moveToX == moveFromX){
-			if(moveToY > moveFromY){
+		else if(destinationColumn == sourceColumn){
+			if(destinationRow > sourceRow){
 				direction = "bot";
 			}
 			else{
@@ -56,56 +56,50 @@ public class Rook extends Piece{
 		
 		Square testSquare;
 		
-		if((direction == "rite") || (direction == "left")){
-			int displaceMax = Math.abs(moveToX - moveFromX); //displacement max depending on what the move to values are
+		if((direction.equals("right")) || (direction.equals("left"))){
+			int maxDisplacement = Math.abs(destinationColumn - sourceColumn);
 		
-			for(int displace = 1; displace <= displaceMax; displace++){ //looping through squares on the rooks path
-				if(direction == "rite"){
-					testSquare = Board.board[moveFromY][moveFromX + displace];
+			for(int displacement = 1; displacement <= maxDisplacement; displacement++){
+				if(direction.equals("right")){
+					testSquare = Board.board[sourceRow][sourceColumn + displacement];
 					
-					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
+					if((testSquare.getType() != PieceType.BLANK) && (displacement != maxDisplacement)){
 						return false;
 					}
-					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
+					else if((displacement == maxDisplacement) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 						return true;
 					}
 				}
 				else{
-					testSquare = Board.board[moveFromY][moveFromX - displace];
+					testSquare = Board.board[sourceRow][sourceColumn - displacement];
 					
-					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
+					if((testSquare.getType() != PieceType.BLANK) && (displacement != maxDisplacement)){
 						return false;
 					}
-					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
+					else if((displacement == maxDisplacement) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
 						return true;
 					}
 				}
 			}
 		}
-		else{ // direction : top or bot
-			int displaceMax = Math.abs(moveToY - moveFromY); //displacement max depending on what the move to values are
+		else{
+			int displaceMax = Math.abs(destinationRow - sourceRow);
 				
-			for(int displace = 1; displace <= displaceMax; displace++){ //looping through squares on the rooks path	
+			for(int displacement = 1; displacement <= displaceMax; displacement++){
 				
-				if(direction == "top"){
-					testSquare = Board.board[moveFromY - displace][moveFromX];
-					
-					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
-						return false;
-					}
-					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
-						return true;
-					}
+				if(direction.equals("top")){
+					testSquare = Board.board[sourceRow - displacement][sourceColumn];
+
 				}
 				else{
-					testSquare = Board.board[moveFromY + displace][moveFromX];
-					
-					if((testSquare.getType() != PieceType.BLANK) && (displace != displaceMax)){
-						return false;
-					}
-					else if((displace == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
-						return true;
-					}
+					testSquare = Board.board[sourceRow + displacement][sourceColumn];
+
+				}
+				if((testSquare.getType() != PieceType.BLANK) && (displacement != displaceMax)){
+					return false;
+				}
+				else if((displacement == displaceMax) && ((testSquare.getType() == PieceType.BLANK) || (testSquare.getColor() != playerColor))){
+					return true;
 				}
 			}
 		}

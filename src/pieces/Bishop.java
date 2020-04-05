@@ -18,33 +18,33 @@ public class Bishop extends Piece{
 
 	public boolean checkMove(int[] sourceCoordinates, int[] destinationCoordinates, Color playerColor, boolean isKing) {
 		
-		int moveFromX = sourceCoordinates[0];
-		int moveFromY = sourceCoordinates[1];
-		int moveToX = destinationCoordinates[0];
-		int moveToY = destinationCoordinates[1];
+		int sourceColumn = sourceCoordinates[0];
+		int sourceRow = sourceCoordinates[1];
+		int destinationColumn = destinationCoordinates[0];
+		int destinationRow = destinationCoordinates[1];
 		
-		Square toSquare = Board.board[moveToY][moveToX];
+		Square toSquare = Board.board[destinationRow][destinationColumn];
 		
-		int moveDistance = Math.abs(moveToX - moveFromX);
+		int moveDistance = Math.abs(destinationColumn - sourceColumn);
 		
 		if(!isKing){
 			if(toSquare.getType() == PieceType.KING){
-				return false; //can't move to take a king
+				return false;
 			}
 		}
 		
-		String direction; //direction the bishop will take
+		String direction;
 		
-		if(moveToX > moveFromX){
-			if(moveToY < moveFromY){
-				direction = "topRite";
+		if(destinationColumn > sourceColumn){
+			if(destinationRow < sourceRow){
+				direction = "topRight";
 			}
 			else{
-				direction = "botRite";
+				direction = "botRight";
 			}
 		}
 		else{
-			if(moveToY < moveFromY){
+			if(destinationRow < sourceRow){
 				direction = "topLeft";
 			}
 			else{
@@ -52,32 +52,32 @@ public class Bishop extends Piece{
 			}
 		}
 		
-		
-		Square testSquare; //square that will be tested for pieces
-		
-		//for loop iterating through the diagonal path of the bishop
-		for(int diagMoveAway = 1; diagMoveAway <= moveDistance; diagMoveAway++){
+		Square testSquare;
+
+		for(int diagonalMoveAway = 1; diagonalMoveAway <= moveDistance; diagonalMoveAway++){
+
+			switch (direction) {
+				case "topRight":
+					testSquare = Board.board[sourceRow - diagonalMoveAway][sourceColumn + diagonalMoveAway];
+					break;
+				case "botRight":
+					testSquare = Board.board[sourceRow + diagonalMoveAway][sourceColumn + diagonalMoveAway];
+					break;
+				case "topLeft":
+					testSquare = Board.board[sourceRow - diagonalMoveAway][sourceColumn - diagonalMoveAway];
+					break;
+				default:
+					testSquare = Board.board[sourceRow + diagonalMoveAway][sourceColumn - diagonalMoveAway];
+					break;
+			}
 			
-			if(direction == "topRite"){
-				testSquare = Board.board[moveFromY - diagMoveAway][moveFromX + diagMoveAway];
-			}
-			else if(direction == "botRite"){
-				testSquare = Board.board[moveFromY + diagMoveAway][moveFromX + diagMoveAway];
-			}
-			else if(direction == "topLeft"){
-				testSquare = Board.board[moveFromY - diagMoveAway][moveFromX - diagMoveAway];
-			}
-			else{ //botLeft
-				testSquare = Board.board[moveFromY + diagMoveAway][moveFromX - diagMoveAway];
-			}
-			
-			if((testSquare.getType() != PieceType.BLANK) && (diagMoveAway != moveDistance)){
+			if((testSquare.getType() != PieceType.BLANK) && (diagonalMoveAway != moveDistance)){
 				return false;
 			}
-			else if((diagMoveAway == moveDistance) && ((testSquare.getColor() != playerColor) || (testSquare.getType() == PieceType.BLANK))){
+			else if((diagonalMoveAway == moveDistance) && ((testSquare.getColor() != playerColor) || (testSquare.getType() == PieceType.BLANK))){
 				return true;
 			}
 		}
-		return false; //default return value
+		return false;
 	}
 }

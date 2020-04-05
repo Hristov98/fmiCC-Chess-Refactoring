@@ -61,11 +61,6 @@ public class StartGame {
         }
     }
 
-    private static void printWrongMoveMessage()
-    {
-        System.out.println("Invalid location. Try again.");
-    }
-
     private static void getValidWhitePlayerTurn() {
         do {
             whitePlayerMove = whitePlayer.getPlayerTurn();
@@ -85,6 +80,11 @@ public class StartGame {
             printWrongMoveMessage();
             return true;
         } else return false;
+    }
+
+    private static void printWrongMoveMessage()
+    {
+        System.out.println("Invalid location. Try again.");
     }
 
     private static void executeBlackPlayerTurn() {
