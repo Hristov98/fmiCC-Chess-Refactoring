@@ -2,11 +2,12 @@ package pieces;
 
 import chessApp.Board;
 import chessApp.Color;
+import chessApp.PieceType;
 
 public class Bishop extends Piece{
 
-	public Bishop(Color colorIn) {
-		super(colorIn, PieceType.BISHOP);
+	public Bishop(Color color) {
+		super(color, PieceType.BISHOP);
 		
 		if(color == Color.WHITE){
 			symbol = "wBi";

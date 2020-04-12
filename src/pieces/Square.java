@@ -1,6 +1,7 @@
 package pieces;
 
 import chessApp.Color;
+import chessApp.PieceType;
 
 public abstract class Square {
 	protected String symbol;

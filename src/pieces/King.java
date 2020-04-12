@@ -2,6 +2,7 @@ package pieces;
 
 import chessApp.Board;
 import chessApp.Color;
+import chessApp.PieceType;
 
 public class King extends Piece{
 

@@ -2,11 +2,12 @@ package pieces;
 
 import chessApp.Board;
 import chessApp.Color;
+import chessApp.PieceType;
 
 public class Queen extends Piece{
 
-	public Queen(Color colorIn) {
-		super(colorIn, PieceType.QUEEN);
+	public Queen(Color color) {
+		super(color, PieceType.QUEEN);
 		
 		if(color == Color.WHITE){
 			symbol = "wQu";

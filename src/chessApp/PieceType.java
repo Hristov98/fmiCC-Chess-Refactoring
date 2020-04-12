@@ -1,4 +1,4 @@
-package pieces;
+package chessApp;
 
 public enum PieceType {
     BLANK(0),

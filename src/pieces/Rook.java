@@ -2,11 +2,12 @@ package pieces;
 
 import chessApp.Board;
 import chessApp.Color;
+import chessApp.PieceType;
 
 public class Rook extends Piece{
 
-	public Rook(Color colorIn) {
-		super(colorIn, PieceType.ROOK);
+	public Rook(Color color) {
+		super(color, PieceType.ROOK);
 		
 		if(color == Color.WHITE){
 			symbol = "wRo";

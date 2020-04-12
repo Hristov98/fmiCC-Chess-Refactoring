@@ -2,11 +2,12 @@ package pieces;
 
 import chessApp.Board;
 import chessApp.Color;
+import chessApp.PieceType;
 
 public class Knight extends Piece{
 
-	public Knight(Color colorIn) {
-		super(colorIn, PieceType.KNIGHT);
+	public Knight(Color color) {
+		super(color, PieceType.KNIGHT);
 		
 		if(color == Color.WHITE){
 			symbol = "wKn";

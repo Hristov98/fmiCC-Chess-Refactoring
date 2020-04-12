@@ -1,6 +1,7 @@
 package pieces;
 
 import chessApp.Color;
+import chessApp.PieceType;
 
 public class BlankSpace extends Square {
 	

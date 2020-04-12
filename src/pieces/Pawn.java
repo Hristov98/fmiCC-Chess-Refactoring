@@ -2,11 +2,12 @@ package pieces;
 
 import chessApp.Board;
 import chessApp.Color;
+import chessApp.PieceType;
 
 public class Pawn extends Piece {
 
-    public Pawn(Color colorIn) {
-        super(colorIn, PieceType.PAWN);
+    public Pawn(Color color) {
+        super(color, PieceType.PAWN);
 
         if (color == Color.WHITE) {
             symbol = "wPa";
