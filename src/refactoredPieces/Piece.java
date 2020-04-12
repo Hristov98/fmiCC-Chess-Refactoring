@@ -29,6 +29,14 @@ public abstract class Piece {
         return type;
     }
 
+    public int getPositionRow() {
+        return position[1];
+    }
+
+    public int getPositionColumn() {
+        return position[0];
+    }
+
     public void setPosition(int[] position) {
         this.position = position;
     }
